@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "api": "node index.js"
+    "api": "./node_modules/.bin/nodemon api/index.js"
   },
   "author": "Heikki Ketoharju",
   "license": "GPL-3.0-or-later",
