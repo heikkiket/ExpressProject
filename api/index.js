@@ -4,7 +4,7 @@ const Artists = require('./artists.js');
 const MongoClient = require('mongodb').MongoClient;
 
 const app = express();
-const port = 8080;
+const port = 8081;
 
 var url = 'mongodb://levylistauser:levylista@localhost:27017?authSource=admin';
 
@@ -21,6 +21,7 @@ var url = 'mongodb://levylistauser:levylista@localhost:27017?authSource=admin';
         });
 
         app.get("/api/albums", async (req, res) => {
+            res.append("Access-Control-Allow-Origin", "*");
             result = await Albums.getAll();
             res.send(result);
 
