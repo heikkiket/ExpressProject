@@ -1,7 +1,7 @@
 const express = require('express');
+const MongoClient = require('mongodb').MongoClient;
 const Albums = require('./albums.js');
 const Artists = require('./artists.js');
-const MongoClient = require('mongodb').MongoClient;
 
 const app = express();
 const port = 8081;
@@ -22,10 +22,15 @@ var url = 'mongodb://levylistauser:levylista@localhost:27017?authSource=admin';
 
         app.get("/api/albums", async (req, res) => {
             res.append("Access-Control-Allow-Origin", "*");
+            res.append("Content-Type", "application/json");
             result = await Albums.getAll();
             res.send(result);
 
         });
+
+        app.get("/api/albums/search", async (req, res) => {
+            res.send(await Albums.search(req.query.q));
+        })
 
         app.get("/api/albums/:id", async (req, res) => {
             res.send(await Albums.getSingle(req.params.id));

@@ -18,6 +18,8 @@ module.exports = {
         return result;
     },
 
-    search: function(q) {
+    search: async function(q) {
+        let query = { $or: [{artist: q}, {album: q}]};
+        return await db.collection("levyt").find(query).toArray();
     }
 }
